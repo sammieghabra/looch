@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1= title
+    textarea.txtArea(placeholder='Type message...' id='message' required='')
+    button.btn(type='submit' id='send_message') Send
+
