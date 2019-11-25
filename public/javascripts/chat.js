@@ -9,9 +9,18 @@ $(function() {
         socket.emit('new_message', {
             message: message.val(),
         })
+        $("#message").val("")
     })
 
     socket.on('client_message', args => {
-        console.log('got it')
+        const message = args.message
+        const username = args.username
+        const final = username + ': ' + message
+        const oldhistory = $("#history").val()
+        if (oldhistory) {
+            $("#history").val(oldhistory + '\n' + final)
+        } else {
+            $("#history").val(final)
+        }
     })
 });
