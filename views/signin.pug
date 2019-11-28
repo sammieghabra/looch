@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1(align='center') Sign in
+      input.userNameInput(placeholder='username' type='text' id='username' name='username' value='')
+      br
+      input.passwordInput(placeholder='password' type='password' id='password' name='password' value='')
+      br
+      button.signInButton(type='submit' id='signIn') Sign In
+      br
+      button.createAccountButton(type='submit' id='createAccount') Create Account
+

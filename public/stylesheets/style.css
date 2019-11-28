@@ -25,3 +25,22 @@ a {
   background-color: #ddd;
   outline: none;
 }
+
+.userNameInput {
+  padding: 10px;
+}
+
+.passwordInput {
+  padding: 10px;
+}
+
+.createAccountButton {
+  border-radius: 25px;
+  width: 200px;
+}
+
+.signInButton {
+  border-radius: 25px;
+  background-color: aquamarine;
+  width: 200px;
+}
