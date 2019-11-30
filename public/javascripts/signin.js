@@ -8,13 +8,21 @@ $(function() {
 
     signInAction.click(function () {
         console.log('trying to sign in')
+        userCredentialAction('/signin')
+    })
 
-        axios.post('/signin', {
+    createAccountAction.click(function () {
+        console.log('trying to create an account')
+        userCredentialAction('/createAccount')
+    })
+
+    function userCredentialAction(action) {
+        axios.post(action, {
             username: username.val(),
-            password:password.val()
+            password: password.val()
         }).then(function (response) {
             console.log('Got response')
             window.location.assign(response.request.responseURL)
         })
-    })
+    }
 });
