@@ -1,11 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-let map = new Map([["key1, value1"], ['key2, value2']])
+let map = new Map()
+map.set('username', 'password')
 
 router.get('/', function(req, res, next) {
-    console.log('show the sign in page')
-
     res.render('signin', { title: 'Chat Application - Sign In'});
 });
 
@@ -18,21 +17,27 @@ router.post('/', function(req, res) {
         .then((authenticationStatus) => {
             if (authenticationStatus === true) {
                 console.log("authenticated")
+                res.cookie('looch-auth', username)
+                req.method = 'get'
+                res.redirect(307, '/')
             } else {
                 console.log("authentication failed")
+                // check username's password with the provided. Just redirect to sign in page since we're not validating that logic
+                res.redirect('/signin')
             }
         }).catch((error) => {
             console.log('Error: ' + error)
-    })
-
-    // check username's password with the provided. Just redirect to sign in page since we're not validating that logic
-    res.redirect('/signin')
+            // check username's password with the provided. Just redirect to sign in page since we're not validating that logic
+            res.redirect('/signin')
+        })
 });
 
 async function authenticate(username, password) {
+    console.log(`Attempting to authenticate with username ${username} and password ${password}`)
+
     return new Promise((resolve, reject) => {
         const actual = map.get(username)
-        return new Promise(actual === password)
+        resolve(actual === password)
     })
 }
 
