@@ -3,6 +3,7 @@ var router = express.Router();
 
 let map = new Map()
 map.set('username', 'password')
+map.set('username1', 'password2')
 
 router.get('/', function(req, res, next) {
     res.render('signin', { title: 'Chat Application - Sign In'});

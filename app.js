@@ -42,15 +42,22 @@ var server = app.listen(8000)
 
 const io = require("socket.io")(server)
 
+function getCookie(name, cookie) {
+  let value = "; " + cookie;
+  let parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
 io.on('connection', ( socket) => {
   console.log("new user connected")
-  socket.username = "Anonymous"
 
   socket.on('new_message', (data) => {
     let message = data.message
     console.log(('getting new message'))
+    console.log(data)
+    const username = getCookie('looch-auth', data.cookie)
     io.sockets.emit('client_message', {
-      message: message, username: socket.username
+      message: message, username: username
     })
   })
 

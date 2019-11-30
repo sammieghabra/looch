@@ -1,5 +1,5 @@
 $(function() {
-    const socket = io.connect('http://localhost:8000')
+    const socket = io.connect('http://192.168.1.2:8000')
     const message = $("#message")
     const send_message = $("#send_message")
 
@@ -8,6 +8,7 @@ $(function() {
         console.log(message.val())
         socket.emit('new_message', {
             message: message.val(),
+            cookie: document.cookie,
         })
         $("#message").val("")
     })
