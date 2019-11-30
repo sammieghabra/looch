@@ -14,7 +14,7 @@ $(function() {
             password:password.val()
         }).then(function (response) {
             console.log('Got response')
-            console.log(response)
+            window.location.assign(response.request.responseURL)
         })
     })
 });
