@@ -19,7 +19,7 @@ router.post('/', function(req, res) {
             if (authenticationStatus === true) {
                 console.log("authenticated")
                 res.cookie('looch-auth', username)
-                res.redirect('/')
+                res.redirect('/chat')
             } else {
                 console.log("authentication failed")
                 // check username's password with the provided. Just redirect to sign in page since we're not validating that logic
